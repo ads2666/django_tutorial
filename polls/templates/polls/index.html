@@ -1,0 +1,15 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+{% if latest_question_list %}
+    <ul>
+        {% for question in latest_question_list %}
+            <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}  -  {{ question.pub_date }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'polls:new' %}">Create new question.</a>
+{% else %}
+    <p>No polls are available.</p>
+    <a href="{% url 'polls:new' %}">Create new question.</a>
+{% endif %}
+{% endblock %}
